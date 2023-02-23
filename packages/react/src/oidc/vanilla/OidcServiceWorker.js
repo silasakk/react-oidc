@@ -35,7 +35,7 @@ const countLetter = (str, find) => {
 
 const b64DecodeUnicode = (str) =>
     decodeURIComponent(Array.prototype.map.call(atob(str), (c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
-const parseJwt = (token) => JSON.parse(b64DecodeUnicode(token.split('.')[1].replace('-', '+').replace('_', '/')));
+const parseJwt = (token) => JSON.parse(b64DecodeUnicode(token.split('.')[1].replaceAll('-', '+').replaceAll('_', '/')));
 const extractTokenPayload = (token) => {
     try {
         if (!token) {
